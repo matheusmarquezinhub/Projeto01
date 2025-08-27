@@ -1,0 +1,167 @@
+Name	Description	Expression	Table	DisplayFolder
+Total	Valor total	SUM(ft_Dados[Valores])	_Medidas	Geral
+Total A	Valor total sobre o produto A 	"
+CALCULATE(
+    [Total],
+    ft_Dados[Produto] = ""Produto A""
+)"	_Medidas	Produto\Medidas
+Total B	Valor total sobre o produto B	"
+CALCULATE(
+    [Total],
+    ft_Dados[Produto] = ""Produto B""
+)"	_Medidas	Produto\Medidas
+Total C	Valor total sobre o produto C	"
+CALCULATE(
+    [Total],
+    ft_Dados[Produto] = ""Produto C""
+)"	_Medidas	Produto\Medidas
+KPI Label		"
+Var _KPI = SELECTEDVALUE('Metrics'[Metrics Pedido])
+Var _Int = ""#,##0""
+Var _Percentage = ""0.00%""
+Var _Currency = ""$0,,.0M""
+
+Return
+SWITCH(
+    _KPI,
+    0,Format([Total A],_Int),
+    1,Format([Total B], _Int),
+    2,Format([Total C], _Int),
+    3,Format([Total], _Int))"	_Medidas	Produto\Medidas
+Aprovado	Valor sobre o que está Aprovado	"
+CALCULATE(
+    [Total],
+    dm_Status[Status] = ""Aprovado""
+)"	_Medidas	Labels
+Aberto	Valor sobre o que está em aberto	"
+CALCULATE(
+    [Total],
+    dm_Status[Status] = ""Aberto""
+)"	_Medidas	Labels
+% Label	% Sobre os Status	"
+VAR vAprovado = [Aprovado]
+VAR vAberto = [Aberto]
+VAR vResults = DIVIDE([Aprovado]-[Aberto],[Aberto])
+RETURN
+    IF(
+        vResults >= 0 ,
+        FORMAT(vResults,""+0%""),
+        FORMAT(vResults,""-0%"")
+    )
+"	_Medidas	Labels
+KPI Label Status		"
+Var _KPI = SELECTEDVALUE('Status'[Status Pedido])
+Var _Int = ""#,##0""
+Var _Percentage = ""0.00%""
+Var _Currency = ""$0,,.0M""
+
+Return
+SWITCH(
+    _KPI,
+    0,Format([Aberto],_Int),
+    1,Format([Aprovado], _Int),
+    2,FORMAT([Total],_Int)
+)"	_Medidas	Status\Medidas
+Cor Status	Formatação condicional	"
+VAR vStatus = SELECTEDVALUE('Status'[Status Pedido])
+VAR vResults = 
+    SWITCH(
+        TRUE(),
+        vStatus = 0,""#F0E199"",
+        vStatus = 1,""#A7E4E0"",
+        vStatus = 2,""#79A6FB""
+    )
+RETURN
+    vResults"	_Medidas	Status\Formatacao
+Cor Produto	Formatação condicional	"
+VAR vStatus = SELECTEDVALUE('Metrics'[Metrics Pedido])
+VAR vResults = 
+    SWITCH(
+        TRUE(),
+        vStatus = 0,""#5BDEB1"",
+        vStatus = 1,""#FDBF6A"",
+        vStatus = 2,""#FB7379"",
+        vStatus = 3,""#79A6FB""
+    )
+RETURN
+    vResults"	_Medidas	Produto\Formatacao
+KPI Label teste		"
+VAR _KPI = SELECTEDVALUE('Metrics'[Metrics Pedido])
+VAR _Percentage = ""0.0%""
+VAR _Qtd = ""#""
+VAR _Valor = 
+    SWITCH(
+        _KPI,
+        0, [Total A],
+        1, [Total B],
+        2, [Total C],
+        3,[Total]
+    )
+
+VAR _Formatado = 
+    SWITCH(
+        TRUE(),
+        _Valor >= 1000000000, FORMAT(_Valor, ""R$ #,0,,,.00 Bi""),  
+        _Valor >= 1000000, FORMAT(_Valor, ""R$ #,0,,.00 Mi""),       
+        _Valor >= 1000, FORMAT(_Valor, ""R$ #,0,.00 K""),            
+        FORMAT(_Valor, ""R$ #,0"")                                
+    )
+RETURN
+    _Formatado
+"	_Medidas	
+SVG_Progress_Visual		"
+VAR Progresso = 24
+VAR TotalBlocos = 30
+VAR LarguraBloco = 6
+VAR Espaco = 2
+VAR AlturaBloco = 16
+VAR CorPreenchido = ""#6C39ED""
+VAR CorVazio = ""#E5E7EB""
+VAR BlocosPreenchidos = INT(Progresso * TotalBlocos / 100)
+VAR LarguraTotal = TotalBlocos * LarguraBloco + (TotalBlocos - 1) * Espaco
+
+VAR BlocosSVG =
+    CONCATENATEX(
+        GENERATESERIES(1, TotalBlocos, 1),
+        ""<rect x='"" & (([Value] - 1) * (LarguraBloco + Espaco)) & 
+        ""' y='0' rx='2' ry='2' width='"" & LarguraBloco & ""' height='"" & AlturaBloco & 
+        ""' fill='"" & IF([Value] <= BlocosPreenchidos, CorPreenchido, CorVazio) & ""' />"",
+        """"
+    )
+
+RETURN
+""
+<svg viewBox='0 0 "" & LarguraTotal & "" 40' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid meet'>
+  <g transform='translate(0, 20)'>
+    "" & BlocosSVG & ""
+  </g>
+</svg>""
+
+"	_Medidas	
+% Produto A	% que representa sobre o valor total	"
+VAR vTotal = [Total A]
+VAR vAll = 
+CALCULATE(
+    [Total],
+    ALL(dm_Produto)
+)
+RETURN
+DIVIDE(vTotal,vAll)"	_Medidas	
+% Produto C	% que representa sobre o valor total	"
+VAR vTotal = [Total C]
+VAR vAll = 
+CALCULATE(
+    [Total],
+    ALL(dm_Produto)
+)
+RETURN
+DIVIDE(vTotal,vAll)"	_Medidas	
+% Produto B	% que representa sobre o valor total	"
+VAR vTotal = [Total B]
+VAR vAll = 
+CALCULATE(
+    [Total],
+    ALL(dm_Produto)
+)
+RETURN
+DIVIDE(vTotal,vAll)"	_Medidas	
