@@ -40,9 +40,9 @@ O design priorizou uma interface **limpa, elegante e objetiva**, destacando o es
 ## 📂 Estrutura do Repositório
 - `Projeto01.pbix` → Arquivo principal do Power BI.  
 - `dashboard-projeto.pbit` - Template para reutilização
-- `README.md` → Documentação do projeto.  
-- `/img` → Prints das telas do dashboard. 
 - `Medidas.txt` - Documentação das medidas
+- `/img` → Prints das telas do dashboard. 
+- `README.md` → Documentação do projeto.  
 
 ## 🚀 Como usar
 1. Clone este repositório:  
