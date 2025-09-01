@@ -25,8 +25,8 @@ O design priorizou uma interface **limpa, elegante e objetiva**, destacando o es
 
 ---
 
-### 🎯 **DEMO INTERATIVO**
-[![Dashboard](https://img.shields.io/badge/🔴%20LIVE-Dashboard%20Power%20BI-brightgreen?style=for-the-badge)]([SEU_LINK_AQUI](https://app.powerbi.com/view?r=eyJrIjoiMmJiMjI5ODktMjQxNi00Yzc3LWI0OTYtYjg1NjI0YzliZWRiIiwidCI6IjA0NWZiZjVjLTBjMzItNDdhMy1hYWI2LThlZjE3MGVlODY5MSJ9))
+### 🎯 **INTERATIVO**
+[![Dashboard](https://img.shields.io/badge/🔴%20LIVE-Dashboard%20Power%20BI-brightgreen?style=for-the-badge)](https://app.powerbi.com/view?r=eyJrIjoiMmJiMjI5ODktMjQxNi00Yzc3LWI0OTYtYjg1NjI0YzliZWRiIiwidCI6IjA0NWZiZjVjLTBjMzItNDdhMy1hYWI2LThlZjE3MGVlODY5MSJ9)
 
 **👆 Clique acima para interagir com o dashboard completo!**
 ---
