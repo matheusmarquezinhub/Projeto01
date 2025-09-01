@@ -23,6 +23,14 @@ O design priorizou uma interface **limpa, elegante e objetiva**, destacando o es
 ![Produtos](https://imgur.com/mbCOq9w.png)  
 ![Status](https://imgur.com/rWBhCVs.png)  
 
+---
+
+### 🎯 **DEMO INTERATIVO**
+[![Dashboard](https://img.shields.io/badge/🔴%20LIVE-Dashboard%20Power%20BI-brightgreen?style=for-the-badge)]([SEU_LINK_AQUI](https://app.powerbi.com/view?r=eyJrIjoiMmJiMjI5ODktMjQxNi00Yzc3LWI0OTYtYjg1NjI0YzliZWRiIiwidCI6IjA0NWZiZjVjLTBjMzItNDdhMy1hYWI2LThlZjE3MGVlODY5MSJ9))
+
+**👆 Clique acima para interagir com o dashboard completo!**
+---
+
 ## 🛠️ Tecnologias Utilizadas
 - Power BI
 - DAX (criação de medidas dinâmicas)
@@ -30,8 +38,10 @@ O design priorizou uma interface **limpa, elegante e objetiva**, destacando o es
 
 ## 📂 Estrutura do Repositório
 - `Projeto01.pbix` → Arquivo principal do Power BI.  
+- `dashboard-projeto.pbit` - Template para reutilização
 - `README.md` → Documentação do projeto.  
-- `/img` → Prints das telas do dashboard.  
+- `/img` → Prints das telas do dashboard. 
+- `Medidas.txt` - Documentação das medidas
 
 ## 🚀 Como usar
 1. Clone este repositório:  
