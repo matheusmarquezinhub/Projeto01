@@ -1,0 +1,20 @@
+# Arquivos Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Arquivos de ambiente
+.env
+.env.local
+.secret
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# Diretórios
+dist/
+build/
+out/
